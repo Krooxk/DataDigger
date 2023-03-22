@@ -10,6 +10,21 @@ fn html_to_text(html: &str) -> String {
     from_read(html.as_bytes(), 80).trim().to_string()
 }
 
+fn banner() {
+    
+    println!("\n\n         ____");
+    println!("        \\___ \\ ");
+    println!("            \\ \\_ ");
+    println!("            / _ \\ ");
+	println!("           / / \\_\\ ");
+    println!("          / /          _ ");
+    println!("         / /      ____| |_____");
+    println!("        / /      | DataDigger | ");
+    println!("       /_/       |____________| \n");
+
+}
+
+
 fn remove_uuids(text: &str) -> String {
     let re_uuid = Regex::new(r"\[\w{8}-\w{4}-\w{4}-\w{4}-\w{12}\]\[\d+\]\*").unwrap();
     let re_by_id = Regex::new(r"\[\d+\]:\s*/documents/by_id/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}").unwrap();
@@ -18,12 +33,14 @@ fn remove_uuids(text: &str) -> String {
     re_empty_lines.replace_all(&re_by_id.replace_all(&re_uuid.replace_all(text, ""), "").replace("*", ""), "").to_string()
 }
 
+
 fn req(url: &str) -> Result<(), reqwest::Error> {
     let body = reqwest::blocking::get(url)?.text()?;
     let out = html_to_text(&body);
     println!("{}", remove_uuids(&out));
     Ok(())
 }
+
 
 fn request(choice: &str) {
     let mut data = String::new();
@@ -38,6 +55,7 @@ fn request(choice: &str) {
 }
 
 fn main() {
+    banner();
     println!("\n {}{} FirstName.", "1".bold(), ")".yellow().bold());
     println!(" {}{} LastName.", "2".bold(), ")".yellow().bold());
     println!(" {}{} Email.", "3".bold(), ")".yellow().bold());
