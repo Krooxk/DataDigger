@@ -49,9 +49,9 @@ fn request(choice: &str) {
     io::stdout().flush().unwrap();
     io::stdin().read_line(&mut data).expect("Failed to read line");
 
-    let url = format!("https://search.illicit.services/records?{}={}", choice, data.trim());
+    let u = format!("https://search.illicit.services/records?{}={}", choice, data.trim());
 
-    req(&url);
+    req(&u);
 }
 
 fn main() {
