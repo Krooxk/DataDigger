@@ -16,7 +16,7 @@ fn banner() {
     println!("        \\___ \\ ");
     println!("            \\ \\_ ");
     println!("            / _ \\ ");
-	println!("           / / \\_\\ ");
+    println!("           / / \\_\\ ");
     println!("          / /          _ ");
     println!("         / /      ____| |_____");
     println!("        / /      | DataDigger | ");
